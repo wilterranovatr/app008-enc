@@ -1,14 +1,15 @@
 from django.db import models
 
 class SolicitudNC(models.Model):
-    SOL_ID = models.AutoField(primary_key=True)
-    SOL_FECHA_SOLICITUD = models.DateField()
-    SOL_TIPO_NC = models.CharField(max_length=64)
-    SOL_USUARIO_CREADOR = models.IntegerField()
-    SOL_FECHA_CREACION = models.DateField(null=True)
-    SOL_FECHA_MODIFICACION = models.DateField(null=True)
-    SOL_ESTADO = models.CharField(max_length=64, null=True)
-    SOL_OBSERVACION = models.TextField(null=True)
-    SOL_USUARIO_VALIDADOR = models.IntegerField(null=True)
+    sol_id = models.AutoField(primary_key=True)
+    sol_fecha_solicitud = models.DateField()
+    sol_tipo_nc = models.CharField(max_length=64)
+    sol_usuario_creador = models.IntegerField()
+    sol_fecha_creacion = models.DateField(null=True)
+    sol_fecha_modificacion = models.DateField(null=True)
+    sol_estado = models.CharField(max_length=64, null=True)
+    sol_observacion = models.TextField(null=True)
+    sol_usuario_validador = models.IntegerField(null=True)
     class Meta:
-        db_table="SOLICITUD_NC"
+        db_table="solicitud_nc"
+        app_label="app_enc"

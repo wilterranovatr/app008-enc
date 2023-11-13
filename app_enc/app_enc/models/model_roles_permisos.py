@@ -1,8 +1,9 @@
 from django.db import models
 
 class RolesPermisos(models.Model):
-    RPER_ID = models.AutoField(primary_key=True)
-    ROL_ID = models.IntegerField()
-    PER_ID = models.IntegerField()
+    rper_id = models.AutoField(primary_key=True)
+    rol_id = models.IntegerField()
+    per_id = models.IntegerField()
     class Meta:
-        db_table="ROLES_PERMISOS"
+        db_table="roles_permisos"
+        app_label="app_enc"

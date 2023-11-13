@@ -6,11 +6,15 @@
         <div class="grid grid-cols-3 pt-2">
             <div class="flex"></div>
             <div class="block">
-                <form action="">
+                <form action="" v-on:submit.prevent="enviarSolicitud()">
+                    <div class="px-4 flex justify-center">
+          <button class="text-sm rounded-full bg-green-600 p-2 text-white font-bold flex" type="submit"><svg class="h-5 w-5 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <line x1="12" y1="5" x2="12" y2="19" />  <line x1="5" y1="12" x2="19" y2="12" /></svg>
+       &nbsp;Solicitar NC</button>
+          </div>
                     <div class="py-2"><span class="text-sm font-bold text-gray-600 py-5">Datos de Documento de Origen</span></div>
                     <div class="space-y-1 py-2">
                         <label class="text-sm">Fecha emisión del comprobantes:</label>
-                        <VueDatePicker v-model="date"></VueDatePicker>
+                        <VueDatePicker v-model="datos_documento.fecha_emision.date"></VueDatePicker>
                     </div>
                     <div class="space-y-1 py-2">
                         <label class="text-sm">Nro. Comprobante:</label>
@@ -19,7 +23,9 @@
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       invalid:border-pink-500 invalid:text-pink-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    " />
+    "
+    v-model="datos_documento.nro_comprobante" 
+    />
                     </div>
                     <div class="space-y-1 py-2">
                         <label class="text-sm">Motivo:</label>
@@ -28,7 +34,7 @@
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       invalid:border-pink-500 invalid:text-pink-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    " />
+    " v-model="datos_documento.motivo" />
                     </div>
                     <div class="space-y-1 py-2">
                         <label class="text-sm">Importe de Nota de Crédito:</label>
@@ -37,17 +43,18 @@
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       invalid:border-pink-500 invalid:text-pink-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    " />
+    " v-model="datos_documento.importe_nc"/>
                     </div>
                     <div class="space-y-1 py-2">
                         <label class="text-sm">Fecha emisión de la nota de crédito:</label>
-                        <VueDatePicker v-model="date"></VueDatePicker>
+                        <VueDatePicker v-model="datos_documento.fecha_emision_nc.date"></VueDatePicker>
                     </div>
                     <div class="py-2"></div>
                 </form>
             </div>
         </div>
     </div>
+    <notifications />
 </template>
 <script setup>
 // Importando layouts
@@ -58,6 +65,10 @@ import '@vuepic/vue-datepicker/dist/main.css';
 //
 import Multiselect from 'vue-multiselect';
 //
+//
+import axios from 'axios';
+//
+import { notify } from "@kyvg/vue3-notification";
 </script>
 <script>
 export default {
@@ -65,17 +76,47 @@ export default {
     components: { VueDatePicker, Multiselect },
     data() {
         return {
-            date: null,
-            options: [{ name: 'Vue.js', language: 'JavaScript' },
-            { name: 'Adonis', language: 'JavaScript' },
-            { name: 'Rails', language: 'Ruby' },
-            { name: 'Sinatra', language: 'Ruby' },
-            { name: 'Laravel', language: 'PHP' },
-            { name: 'Phoenix', language: 'Elixir' }],
-            value: null,
-            selectedOptions: [],
+            datos_documento:{
+                fecha_emision:{
+                    date:null
+                },
+                nro_comprobante:"",
+                motivo:"",
+                importe_nc:"",
+                fecha_emision_nc:{
+                    date:null
+                }
+            },
         }
     },
+    mounted(){
+        this.csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    },
+    methods:{
+        //
+    enviarSolicitud(){
+      let jsonString = JSON.stringify(this.$data)
+      axios.post('/solicitud_nota_credito/servicios/create/',jsonString)
+        .then(
+        response =>{
+        console.log(response)
+        notify({
+          title:"Registro Exitoso",
+          text: ""+response.data.message
+        })
+        }).catch(
+          err =>{
+            console.log(err)
+            notify({
+          title:"Error de Registro",
+          text: "Error al guardar datos verificar los campos",
+          type:"error"
+        })
+          }
+        );
+    },
+    }
+
 }
 </script>
 <style scope></style>

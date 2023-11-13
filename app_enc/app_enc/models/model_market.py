@@ -1,7 +1,8 @@
 from django.db import models
 
 class Market(models.Model):
-    MAR_ID = models.AutoField(primary_key=True)
-    MAR_DESCRIPCION = models.CharField(max_length=64)
+    mar_id = models.AutoField(primary_key=True)
+    mar_descripcion = models.CharField(max_length=64)
     class Meta:
-        db_table="MARKET"
+        db_table="market"
+        app_label="app_enc"

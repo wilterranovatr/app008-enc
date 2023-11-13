@@ -1,8 +1,9 @@
 from django.db import models
 
 class MenuRPermisos(models.Model):
-    MERP_ID = models.AutoField(primary_key=True)
-    MEN_ID = models.IntegerField()
-    RPER_ID = models.IntegerField()
+    merp_id = models.AutoField(primary_key=True)
+    men_id = models.IntegerField()
+    rper_id = models.IntegerField()
     class Meta:
-        db_table="MENU_RPERMISOS"
+        db_table="menu_rpermisos"
+        app_label="app_enc"

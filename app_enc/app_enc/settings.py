@@ -189,3 +189,7 @@ AUTH_ADFS = {
     'TENANT_ID': tenant_id,
     'RELYING_PARTY_ID': client_id,
 }
+
+##
+CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
+CSRF_COOKIE_NAME = 'XSRF-TOKEN'

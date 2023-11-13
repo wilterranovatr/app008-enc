@@ -1,6 +1,7 @@
 import {createApp, h} from 'vue';
 import {createInertiaApp} from '@inertiajs/vue3';
 import '../css/style.css';
+import Notifications from '@kyvg/vue3-notification'
 
 // const pages = import.meta.glob('./pages/**/*.vue');
 
@@ -22,6 +23,7 @@ createInertiaApp({
     setup({el, App, props, plugin}) {
         const app = createApp({render: () => h(App, props)})
         app.use(plugin)
+        app.use(Notifications)
         app.mount(el)
     },
 })

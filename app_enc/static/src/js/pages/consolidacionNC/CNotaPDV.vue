@@ -30,13 +30,17 @@
         }'>
             <thead>
                 <tr>
-                    <th class="text-sm text-gray-600 text-center">Id</th>
-                    <th class="text-sm text-gray-600 text-center">Name</th>
-                    <th class="text-sm text-gray-600 text-center">Position</th>
-                    <th class="text-sm text-gray-600 text-center">Salary</th>
-                    <th class="text-sm text-gray-600 text-center">Start Date</th>
-                    <th class="text-sm text-gray-600 text-center">Office</th>
-                    <th class="text-sm text-gray-600 text-center">Extn</th>
+                    <th class="text-sm text-gray-600 text-center">ID_NC</th>
+                    <th class="text-sm text-gray-600 text-center">ID_DETALLE</th>
+                    <th class="text-sm text-gray-600 text-center">CREADOR_USUARIO</th>
+                    <th class="text-sm text-gray-600 text-center">TIPO_COMPROBANTE</th>
+                    <th class="text-sm text-gray-600 text-center">FECHA_CREAR_NC</th>
+                    <th class="text-sm text-gray-600 text-center">ESTADO</th>
+                    <th class="text-sm text-gray-600 text-center">EMISION_COMPROBANTE</th>
+                    <th class="text-sm text-gray-600 text-center">NRO</th>
+                    <th class="text-sm text-gray-600 text-center">IMPORTE</th>
+                    <th class="text-sm text-gray-600 text-center">IMPORTE_PRODUCTOS</th>
+                    <th class="text-sm text-gray-600 text-center">METODO</th>
                 </tr>
             </thead>
         </DataTable>
@@ -59,20 +63,30 @@ import data from "../../../../dist/muestra.json"
 export default {
     name: "CNotaPDV",
     components: { DataTable },
+    props:{
+        lista_solicitudes:Array
+    },
     data() {
         return {
             columms: [
-                { data: 'id' },
-                { data: 'name' },
-                { data: 'position' },
-                { data: 'salary' },
-                { data: 'start_date' },
-                { data: 'office' },
-                { data: 'extn' },
+                { data: 'ID_NC' },
+                { data: 'ID_DETALLE' },
+                { data: 'CREADOR_USUARIO' },
+                { data: 'TIPO_COMPROBANTE' },
+                { data: 'FECHA_CREAR_NC' },
+                { data: 'ESTADO' },
+                { data: 'EMISION_COMPROBANTE' },
+                { data: 'NRO' },
+                { data: 'IMPORTE' },
+                { data: 'IMPORTE_PRODUCTOS' },
+                { data: 'METODO' },
             ],
-            data_table: data["data"]
+            data_table: this.lista_solicitudes
         }
     },
+    mounted(){
+    }
+    ,
     methods: {
     }
 }

@@ -1,12 +1,14 @@
 from django.db import models
 
 class ProductoDetalle(models.Model):
-    DPRO_ID = models.AutoField(primary_key=True)
-    DPRO_CODIGO = models.CharField(max_length=7)
-    DPRO_DESCRIPCION = models.CharField(max_length=255)
-    DPRO_UNIDAD = models.CharField(max_length=32)
-    DPRO_PRECIO = models.FloatField()
-    DPRO_CANTIDAD = models.IntegerField()
-    DPRO_MONTO_TOTAL = models.FloatField()
+    dpro_id = models.AutoField(primary_key=True)
+    dpro_codigo = models.CharField(max_length=7)
+    dpro_descripcion = models.CharField(max_length=255)
+    dpro_unidad = models.CharField(max_length=32)
+    dpro_precio = models.FloatField()
+    dpro_cantidad = models.IntegerField()
+    dpro_monto_total = models.FloatField()
+    det_id = models.IntegerField(null=True)
     class Meta:
-        db_table="PRODUCTO_DETALLE"
+        db_table="producto_detalle"
+        app_label="app_enc"

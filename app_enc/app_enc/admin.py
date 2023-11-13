@@ -1,17 +1,17 @@
 from django.contrib import admin
 
 ## Importando modelos
-from models.model_solicitud_nc import *
-from models.model_usuario import *
-from models.model_detalle_solicitud import *
-from models.model_market import *
-from models.model_menu_r_permisos import *
-from models.model_menu import *
-from models.model_permisos import *
-from models.model_producto_detalle import *
-from models.model_roles_permisos import *
-from models.model_roles import *
-from models.model_solicitante_detalle import *
+from .models.model_solicitud_nc import *
+from .models.model_usuario import *
+from .models.model_detalle_solicitud import *
+from .models.model_market import *
+from .models.model_menu_r_permisos import *
+from .models.model_menu import *
+from .models.model_permisos import *
+from .models.model_producto_detalle import *
+from .models.model_roles_permisos import *
+from .models.model_roles import *
+from .models.model_solicitante_detalle import *
 
 
 ## Registrando modelos

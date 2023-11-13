@@ -1,10 +1,11 @@
 from django.db import models
 
 class SolicitanteDet(models.Model):
-    SDET_ID = models.AutoField(primary_key=True)
-    SDET_DNI = models.CharField(max_length=10)
-    SDET_MATERNO = models.CharField(max_length=64)
-    SDET_PATERNO = models.CharField(max_length=64)
-    SDET_NOMBRES = models.CharField(max_length=64)
+    sdet_id = models.AutoField(primary_key=True)
+    sdet_dni = models.CharField(max_length=10)
+    sdet_materno = models.CharField(max_length=64)
+    sdet_paterno = models.CharField(max_length=64)
+    sdet_nombres = models.CharField(max_length=64)
     class Meta:
-        db_table ="SOLICITANTE_DET"
+        db_table ="solicitante_det"
+        app_label = "app_enc"
